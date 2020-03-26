@@ -67,6 +67,9 @@ const PORT_OFFSET = process.env.WEBPACK_PORT_OFFSET || process.env.PORT_OFFSET
 // http port
 const port = process.env.KUI_PORT || (PORT_OFFSET === undefined ? 9080 : 9080 + parseInt(PORT_OFFSET, 10))
 
+// webpack host
+const webpack_host = process.env.WEBPACK_HOST || 'localhost'
+
 // contextRoot
 let contextRoot = ''
 try {
@@ -361,6 +364,9 @@ module.exports = {
     }
   },
   devServer: {
+    sockHost: webpack_host,
+    sockPort: 443,
+    disableHostCheck: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     compress: true,
     clientLogLevel: 'silent',
