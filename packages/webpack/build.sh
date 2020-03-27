@@ -109,11 +109,13 @@ function configure {
     UGLIFY=true npx --no-install kui-prescan
 
     mv node_modules/@kui-shell/prescan.json .            # /// prune will remove prescan.json
+    mv node_modules/@kui-shell/client . # avoid prune
 
     # remove any dev dependencies
     npm prune --production
 
     mv prescan.json node_modules/@kui-shell/prescan.json # \\\ restore it after the prune
+    mv client node_modules/@kui-shell # restore client
 }
 
 # check for prerequisites
